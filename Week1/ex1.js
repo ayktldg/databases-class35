@@ -9,17 +9,17 @@ const connection = mysql.createConnection({
 
 connection.connect();
 
-connection.query("DROP DATABASE IF EXISTS meetup", function (error, results) {
+connection.query("DROP DATABASE IF EXISTS meetup", (error, results) => {
   if (error) throw error;
   console.log("meetup database has been dropped");
 });
 
-connection.query("CREATE DATABASE meetup", function (error, results) {
+connection.query("CREATE DATABASE meetup", (error, results) => {
   if (error) throw error;
   console.log("meetup database has been created");
 });
 
-connection.query("USE meetup", function (error, results) {
+connection.query("USE meetup", (error, results) => {
   if (error) throw error;
   console.log("Using meetup database");
 });
@@ -39,7 +39,7 @@ connection.query(
   `CREATE TABLE Meeting(
       meeting_no INT, meeting_title VARCHAR(100), starting_time DATETIME, ending_time DATETIME, room_no INT
     )`,
-  function (error, results) {
+  (error, results) => {
     if (error) throw error;
     console.log("Meeting table created.");
     console.log(results);
@@ -50,7 +50,7 @@ connection.query(
   `CREATE TABLE Room(
       room_no INT, room_name VARCHAR(100), floor_number INT
     )`,
-  function (error, results) {
+  (error, results) => {
     if (error) throw error;
     console.log("Room table created.");
     console.log(results);
@@ -65,7 +65,7 @@ connection.query(
       (3, 'Ashley', 'Bob'),
       (4, 'Jane', 'David'),
       (5, 'John', 'Sara')`,
-  function (error, results) {
+  (error, results) => {
     if (error) throw error;
     console.log(results);
   }
@@ -79,7 +79,7 @@ connection.query(
         (310, 'Pool', 3),
         (103, 'Sea', 1),
         (204, 'Forest', 2)`,
-  function (error, results) {
+  (error, results) => {
     if (error) throw error;
     console.log(results);
   }
@@ -93,7 +93,7 @@ connection.query(
       (3, 'Closures', '2022-05-12 11:45:00', '2022-05-12 14:00:00', 112),
       (4, 'Advanced Js', '2022-06-01 09:00:00', '2022-06-01 17:00:00', 113),
       (5, 'Intro Js', '2022-07-10 09:30:00', '2022-07-10 15:45:00', 114)`,
-  function (error, results) {
+  (error, results) => {
     if (error) throw error;
     console.log(results);
   }
