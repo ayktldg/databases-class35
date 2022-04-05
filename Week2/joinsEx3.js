@@ -20,10 +20,12 @@ const execQuery = (query) => {
 };
 
 const GET_AUTHORS_MENTORS = `
-SELECT 
-  author_no, author_name, mentor 
-FROM 
-  authors;
+  SELECT 
+  a.author_no, m.author_name AS author ,a.author_name AS mentor
+FROM
+  authors a
+INNER JOIN authors m ON 
+  a.author_no = m.mentor;
 `;
 
 const GET_AUTHORS_AND_PAPERS = `
