@@ -1,0 +1,3 @@
+1- I exported all tables as a CSV by clicking the import button using Sequel Ace which is a tool for MySQL
+2- I needed to import files to MongoDB so I downloaded the MongoDB Compass tool
+3- I created the database and imported tables by clicking the import data button in the MongoDB Compass application.
