@@ -1,3 +1,14 @@
-1- I exported all tables as a CSV by clicking the import button using Sequel Ace which is a tool for MySQL
-2- I needed to import files to MongoDB so I downloaded the MongoDB Compass tool
-3- I created the database and imported tables by clicking the import data button in the MongoDB Compass application.
+I exported all tables that are inside the new_world database in a CSV file format. 
+Then I opened the Sequel Ace tool which is a tool for MySQL, and selected the new_world database.
+After I see the tables I exported the city, country, and countrylanguage tables by right-clicking on
+the table and choosing the export option. So they successfully exported.
+
+I needed to import files to MongoDB so I downloaded the MongoDB Compass tool.
+Also, I needed to connect MongoDB Atlas and MongoDB Compass tool. 
+So I copied the connection string from MongoDB Atlas and paste it to the MongoDB Compass for making a connection.
+It is important to pass your password inside the connection string at this part.
+After establishing the connection I created the database inside the MongoDB Compass. 
+You can see the 'import data' button when you navigate to the database which is created. So I clicked the 'import data'
+button and select the 'import csv file option'. I pick the CSV files that I exported by clicking the 'browse files' button.
+Migration has completed and after this process, data could also be managed by using MongoDb.
+
