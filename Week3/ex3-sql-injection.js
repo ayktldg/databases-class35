@@ -2,8 +2,7 @@
 Question 1- Give an example of a value that can be passed as name and code that would
       take advantage of SQL-injection and (fetch all the records in the database).
 
-Answer => It can be passed turkey' as name and tur' as code to query to sql-injection. 
-    If we pass the single quote after the string parameter, sql get confused and retrieve all data.
+Answer => We can use for both name and code parameters 'OR'1=1
 */
 import prompt from "prompt";
 import mysql from "mysql";
@@ -49,9 +48,9 @@ async function queryDatabase() {
     }
   } catch (error) {
     console.error(error);
+  } finally {
+    connection.end();
   }
-
-  connection.end();
 }
 
 queryDatabase();
