@@ -13,21 +13,21 @@ const execQuery = util.promisify(connection.query.bind(connection));
 const seedDatabase = async () => {
   const CREATE_AUTHORS_TABLE = `
     CREATE TABLE IF NOT EXISTS authors (
-      author_no INT PRIMARY KEY,
+      author_id INT PRIMARY KEY,
       author_name VARCHAR(50),
       university VARCHAR(50),
       date_of_birth DATE,
       h_index INT,
       gender ENUM('m', 'f')
     );`;
+
   const ADD_MENTOR_COLUMN = `
-  ALTER TABLE authors ADD mentor INT;
-    `;
+    ALTER TABLE authors ADD mentor INT;`;
+
   const ADD_FK_TO_MENTOR_COLUMN = `
-  ALTER TABLE authors
-  ADD FOREIGN KEY(mentor)
-  REFERENCES authors(author_no)
-    `;
+    ALTER TABLE authors
+    ADD FOREIGN KEY(mentor)
+    REFERENCES authors(author_id)`;
 
   connection.connect();
 
@@ -37,10 +37,9 @@ const seedDatabase = async () => {
     await execQuery(ADD_FK_TO_MENTOR_COLUMN);
   } catch (error) {
     console.error(error);
+  } finally {
     connection.end();
   }
-
-  connection.end();
 };
 
 seedDatabase();

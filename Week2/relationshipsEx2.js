@@ -22,17 +22,17 @@ const seedDatabase = async () => {
   const CREATE_RESEARCH_PAPERS_AUTHORS_TABLE = `
     CREATE TABLE IF NOT EXISTS research_papers_authors (
       id INT PRIMARY KEY,
-      author_no INT,
+      author_id INT,
       paper_id INT,
       FOREIGN KEY(paper_id) REFERENCES research_papers(paper_id),
-      FOREIGN KEY(author_no) REFERENCES authors(author_no)
+      FOREIGN KEY(author_id) REFERENCES authors(author_id)
       );`;
 
   const CANCEL_FK_CHECK = "SET FOREIGN_KEY_CHECKS = 0;"; //added for removing errors when inserting data into authors table
 
   const ADD_AUTHORS = `
     INSERT INTO 
-      authors (author_no, author_name, university, date_of_birth, h_index, gender, mentor) 
+      authors (author_id, author_name, university, date_of_birth, h_index, gender, mentor) 
     VALUES 
         (100, 'Leanne', 'University of Amsterdam', '1980-04-07', 24, 'f', 101),
         (101, 'Ervin', 'University of Amsterdam', '1977-10-05', 30, 'm', 102),
@@ -89,7 +89,7 @@ const seedDatabase = async () => {
 
   const ADD_RESEARCH_PAPERS_AUTHORS = `
     INSERT INTO 
-      research_papers_authors (id,author_no, paper_id) 
+      research_papers_authors (id,author_id, paper_id) 
     VALUES 
         (1, 100, 501),
         (3, 100, 503),
@@ -139,9 +139,9 @@ const seedDatabase = async () => {
   } catch (error) {
     console.error(error);
     connection.end();
+  } finally {
+    connection.end();
   }
-
-  connection.end();
 };
 
 seedDatabase();
