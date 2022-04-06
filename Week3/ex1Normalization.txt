@@ -1,32 +1,32 @@
 1-What columns violate 1NF?
-- member_address : Street Number and street name could be divided.
 - dinner_date : The attribute has different type of date.
 - food_code, food_description: Violation of atomic values
 
 2-What entities do you recognize that could be extracted?
 - venue_code can be extracted because dinner_id and venue_code refer to same event.
+- Member, dinner, venue and food entities could be extracted as different tables.
 
 3-Name all the tables and columns that would make a 3NF compliant solution.
+
 member {
   member_id int [pk] 
   member_name varchar
-  address_id int [fk]
+  member_address varchar
 }
-
-address {
-  address_id int [pk]
-  street_num int
-  street_name varchar
- }
  
 dinner {
   dinner_id int [pk]
   dinner_date varchar
-  venue_description int
-  food_code varchar [fk]
+  venue_code varchar [fk]
  }
 
- food {
+venue {
+  venue_code varchar [pk]
+  venue_description varchar
+  dinner_id int [fk]
+ }
+
+food {
   food_code varchar [pk]
   food_description varchar
  }
@@ -34,4 +34,19 @@ dinner {
 dinner_member {
   dinner_id int [fk]
   member_id int [fk]
+ }
+
+venue_member {
+  venue_code varchar [fk]
+  member_id int [fk]
+ }
+ 
+venue_food {
+  venue_code varchar [fk]
+  food_code varchar [fk]
+ }
+ 
+dinner_food {
+  dinner_id int [fk]
+  food_code varchar [fk]
  }
