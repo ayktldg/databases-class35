@@ -16,19 +16,26 @@ const seedDatabase = async () => {
   const transactionAmount = 1000;
   const date = new Date(Date.now());
 
-  const transactionDate = `${date.getFullYear()}-${formatDate(
-    date.getMonth() + 1
-  )}-${formatDate(date.getDate())}`;
+  const transactionDate = `
+  ${date.getFullYear()}-${formatDate(date.getMonth() + 1)}-${formatDate(
+    date.getDate()
+  )}`;
 
-  const UPDATE_SENDER_BALANCE = `UPDATE account SET balance = balance - ${transactionAmount} WHERE account_number = ${senderId}`;
-  const UPDATE_RECEIVER_BALANCE = `UPDATE account SET balance = balance - ${transactionAmount} WHERE account_number = ${receiverId}`;
+  const UPDATE_SENDER_BALANCE = `
+    UPDATE account 
+    SET balance = balance - ${transactionAmount} 
+    WHERE account_number = ${senderId}`;
+
+  const UPDATE_RECEIVER_BALANCE = `
+    UPDATE account 
+    SET balance = balance - ${transactionAmount} 
+    WHERE account_number = ${receiverId}`;
+
   const INSERT_TRANSACTIONS_TO_ACCOUNT_CHANGES = `
-  INSERT INTO 
-        account_changes(account_number, amount, changed_date, remark)
-    VALUES
+      INSERT INTO account_changes(account_number, amount, changed_date, remark)
+      VALUES
         (${senderId}, ${transactionAmount}, '${transactionDate}','sent'),
-        (${receiverId}, ${transactionAmount}, '${transactionDate}', 'received');
-    `;
+        (${receiverId}, ${transactionAmount}, '${transactionDate}', 'received');`;
 
   connection.connect();
 

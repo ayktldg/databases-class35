@@ -21,7 +21,7 @@ const seedDatabase = async () => {
         change_number INT AUTO_INCREMENT,
         account_number INT,
         amount DECIMAL(15,2),
-        changed_date DATE,
+        changed_date DATETIME,
         remark VARCHAR(50),
         PRIMARY KEY (change_number),
         FOREIGN KEY (account_number) REFERENCES account(account_number)

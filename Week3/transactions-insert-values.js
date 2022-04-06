@@ -23,9 +23,9 @@ const seedDatabase = async () => {
     INSERT INTO 
         account_changes(account_number, amount, changed_date, remark)
     VALUES
-        (101, 1000.00, '2022-03-27','sent'),
-        (102, 100.50, '2022-03-28', 'received'),
-        (103, 2500.90, '2022-03-29', 'sent');
+        (101, 1000.00, '2022-03-27 08:30:21','sent'),
+        (102, 100.50, '2022-03-28 10:10:01', 'received'),
+        (103, 2500.90, '2022-03-29 14:40:17', 'sent');
     `;
   connection.connect();
 
@@ -39,10 +39,9 @@ const seedDatabase = async () => {
   } catch (error) {
     console.error(error);
     await execQuery("ROLLBACK");
+  } finally {
     connection.end();
   }
-
-  connection.end();
 };
 
 seedDatabase();
